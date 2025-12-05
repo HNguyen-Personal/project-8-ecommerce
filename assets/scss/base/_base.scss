@@ -1,0 +1,25 @@
+*,
+::before,
+::after {
+   box-sizing: border-box;
+}
+
+html,
+body {
+   scroll-behavior: smooth;
+}
+
+/* Quy đổi 1rem = 10px cho dễ --- xem lại rem để biết thêm */
+html {
+   font-size: 62.5%;
+   /* 1rem = 10px */
+}
+
+body{
+   font-size: 1.6rem;
+   font-family: Gordita, sans-serif;
+}
+
+:root {
+   
+}
