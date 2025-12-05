@@ -1,0 +1,22 @@
+{
+   "name": "project-8-grocery-ecommerce-templates",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "sass": "sass assets/scss:assets/css -w"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/HNguyen-Personal/project-8-ecommerce.git"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "type": "commonjs",
+   "bugs": {
+      "url": "https://github.com/HNguyen-Personal/project-8-ecommerce/issues"
+   },
+   "homepage": "https://github.com/HNguyen-Personal/project-8-ecommerce#readme"
+}

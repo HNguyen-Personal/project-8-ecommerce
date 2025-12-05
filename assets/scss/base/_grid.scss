@@ -1,0 +1,202 @@
+// Breakpoints, dimensions, container, row, column, v.v.v.v
+@use "sass:map";
+@use "sass:math";
+
+// Bước 1 -- Lấy breakpoints & max-width maps từ Bootstrap
+$grid-breakpoints: (
+   xs: 0,
+   sm: 576px,
+   md: 768px,
+   lg: 992px,
+   xl: 1200px,
+   xxl: 1400px
+);
+$container-max-widths: (
+   sm: 540px,
+   md: 720px,
+   lg: 960px,
+   xl: 1140px,
+   xxl: 1370px
+);
+
+// Bước 2: Define cột & gutters
+$grid-columns: 12;
+$grid-gutter-width: 30px !default;
+
+$gutters: (
+   0: 0,
+   1: .25,
+   2: .5,
+   3: 1,
+   4: 1.5,
+   5: 3,
+);
+
+// TẠO placeholder để tránh lặp code
+%gutter-padding {
+   // padding-left: calc($grid-gutter-width * 0.5);
+   // padding-right: calc($grid-gutter-width * 0.5);
+   // Bước 15: đổi formula padding để dùng biến grid-gutter-x
+   padding-left: calc(var(--grid-gutter-x) * 0.5);
+   padding-right: calc(var(--grid-gutter-x) * 0.5);
+}
+
+.container-fluid {
+   // Bước 14 -> đặt 1 biến css thuần để tiện chỉnh sửa
+   --grid-gutter-x: #{$grid-gutter-width};
+   --grid-gutter-y: 0;
+
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   @extend %gutter-padding;
+}
+
+// container phải kế thừa từ fluid vì nếu ngược lại thì mỗi lần viết cho container -> fluid cũng sẽ bị thêm vào vì nó @extend từ container
+.container {
+   @extend .container-fluid; // -> Extend từ fluid
+}
+
+// Bước 7 -> Tạo Style cho row
+.row {
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: calc(var(--grid-gutter-y) * -1);
+   // row cần margin âm lại để bù vào gutters đã được tạo ra bởi container
+   margin-left: - calc($grid-gutter-width * 0.5); // thêm dấu - vào đằng trước thì sass sẽ tự biến thành số âm
+   margin-right: - calc($grid-gutter-width * 0.5);
+
+   //BƯỚC 16 -> ĐỔI FORMULA ĐỂ DÙNG BIẾN $grid-gutter-x
+   margin-left: calc(var(--grid-gutter-x) * 0.5);
+   margin-right: calc(var(--grid-gutter-x) * 0.5);
+
+
+   // Bước 12 -> thêm flex: 0 0 auto; cho các row-cols
+   // &[class*="row-cols-"]>*,
+   //Bước 11 -> tạo gutter cho col- vì ko extend thẳng vào media query được -> phải add flex-grow: 0 & flex-shrink: 0 & flex-basis: auto vào để nó ghi đè cái .col
+   // [class*=col-] {
+
+
+   // }
+
+   // Bước 17: thêm gutter y cho .col là thẻ con của row > nhưng hàng đầu tiên cũng bị -> nên lên trên row margin âm ngược lại
+   >* {
+      margin-top: var(--grid-gutter-y);
+      @extend %gutter-padding;
+   }
+}
+
+// Bước 8 -> tạo column
+.col {
+   flex: 1 0;
+   // tạo gutters giữa các cột
+   // @extend %gutter-padding;
+}
+
+
+
+// Bước 4: tạo 1 mixin để tạo media query tự động
+@mixin make-media-query($dimension, $bypass: false) {
+   @if $bypass {
+      @content;
+   }
+
+   @else {
+      @media (min-width: $dimension) {
+         @content;
+      }
+   }
+
+}
+
+// Bước 13 -> tạo ra mixin để đỡ lặp loop
+@mixin make-row-columns($infix) {
+   @for $i from 1 through $grid-columns * 0.5 {
+      .row-cols#{$infix}-#{$i}>* {
+         flex: 0 0 auto;
+         width: math.div(100%, $i);
+      }
+   }
+}
+
+@mixin make-columns($infix) {
+   @for $i from 1 through $grid-columns {
+      .col#{$infix}-#{$i} {
+         flex: 0 0 auto;
+         width: math.div(100%, $grid-columns) * $i;
+      }
+   }
+}
+
+@mixin make-offsets($infix) {
+   @for $i from 0 to $grid-columns {
+      .offset#{$infix}-#{$i} {
+         margin-left: if($i > 0, math.div(100%, $grid-columns) * $i, 0);
+      }
+   }
+}
+
+// Bước 18 -> tạo mixin để làm gutter xy
+@mixin make-gutters($infix) {
+   @each $i, $ratio in $gutters {
+
+      // .g#{$infix}-#{$i} {
+      //    --grid-gutter-x: #{$grid-gutter-width * $ratio};
+      //    --grid-gutter-y: #{$grid-gutter-width * $ratio};
+      // }
+      .g#{$infix}-#{$i},
+      .gx#{$infix}-#{$i} {
+         --grid-gutter-x: #{$grid-gutter-width * $ratio};
+      }
+
+      .g#{$infix}-#{$i},
+      .gy#{$infix}-#{$i} {
+         --grid-gutter-y: #{$grid-gutter-width * $ratio};
+      }
+   }
+}
+
+
+// Bước 3: Loop qua từng map ở trong $grid-breakpoints
+@each $breakpoint, $dimension in $grid-breakpoints {
+   // Bước 6 -> Dùng hàm map-get để lấy giá trị từ map $container-max-widths
+   // key của $container-max-widths giống với $grid-breakpoints -> nên có thể nội suy hoặc truyền thẳng $breakpoint vào (vì $breakpoint đều là key của cả 2 map)
+   $max-width: map-get($container-max-widths , $breakpoint); // ở đây sẽ lấy giá trị của $container-max-widths có key $breakpoint -> lấy đc giá trị width
+
+   $is-xs: $breakpoint ==xs;
+
+   // Bước 10 -> tạo biến $infix để check nếu key là xs thì sẽ ko chạy -> vì xs min-width là 0 thì cũng giống như viết ở ngoài, ko cần media query
+   $infix: if($is-xs, "", "-#{$breakpoint}");
+
+   // Bước 5 -> tạo media query với mixin đã tạo ở trên
+   @include make-media-query($dimension, $is-xs) {
+      .container {
+         // Bước 7: Truyền biến $max-width vào thuộc tính max-width
+         max-width: $max-width;
+      }
+
+      @include make-row-columns($infix);
+      // @for $i from 1 through $grid-columns * 0.5 {
+      //    .row-cols#{$infix}-#{$i}>* {
+      //       // tác động vào các thẻ con trực tiếp của selector này -> tạo width cho col dựa trên số lượng cột
+      //       // color: red;
+      //       width: math.div(100%, $i);
+      //    }
+      // }
+
+      // Bước 9: bỏ col vào media query
+      // -> tạo vòng lặp 1 - 12
+      // @for $i from 1 through $grid-columns {
+      //    .col#{$infix}-#{$i} {
+      //       width: math.div(100%, $grid-columns) * $i;
+      //    }
+      // }
+
+
+      @include make-columns($infix);
+      @include make-offsets($infix);
+      @include make-gutters($infix);
+   }
+}
+
+//row-cols-*, offset-*, g-*, gx-*, gy-*

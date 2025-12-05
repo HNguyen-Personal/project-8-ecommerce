@@ -1,0 +1,22 @@
+$grid-breakpoints: (
+   sm: 576px,
+   md: 768px,
+   lg: 992px,
+   xl: 1200px,
+   xxl: 1400px
+);
+
+@mixin breakpoint($key) {
+   // dùng hàm map-get để lấy giá trị từ biến $grid-breakpoints có key là $key (key ở biến là xs,sm,md,lg,xl,xxl -> nên khi truyền chính giá trị key đó vào mixin này thì sẽ lôi ra được value của key đó ở trong biến
+   $breakpoint: map-get($grid-breakpoints, $key);
+
+   @if ($breakpoint) {
+      @media (max-width: ($breakpoint - 0.02)) {
+         @content
+      }
+   }
+
+   @else {
+      @error "The value #{$key} not in breakpoints list";
+   }
+}
