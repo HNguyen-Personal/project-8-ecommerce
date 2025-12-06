@@ -1,19 +1,27 @@
 .dropdown {
+   // lấy giá trị 1240px cho tới khi 100% < 1240px
+   width: min(1240px, 100%);
+
    position: absolute;
    left: 0;
    padding-top: 5.4rem;
-   visibility: hidden;
    // mặc định cho nó ẩn
-   opacity: 0;
+   // visibility: hidden;
+   // opacity: 0;
    transition: 0.3s ease;
-   
 
    &__inner {
+      --inner-max-height: min(58.2rem, 100vh - 158px);
+      --inner-padding: 30px;
+
       position: relative;
-      padding: 30px;
+      padding: var(--inner-padding);
       border-radius: 2rem;
       background: var(--dropdown-bg-color);
       box-shadow: 0 40px 90px 20px var(--dropdown-shadow-color);
+      // đặt vào thẻ cha thì __inner ko ăn theo được nên đặt thẳng height vào inner
+      //height: min(58.2rem, 100vh - 158px); // làm thế này để khi user có thu nhỏ trình duyệt lại thì phần dropdown vẫn ko bị che ( lấy chiều cao của dropdown - đi chiều cao của header và trừ thêm 1 khoảng để tự tạo ra padding bottom đỡ xấu
+      max-height: var(--inner-max-height); // -> tối đa là nó đạt thế này, còn ko thì nó sẽ bằng chiều cao của phần tử thôi (auto) -> nếu ít phần tử cũng ko bị quá cao
 
       &::before {
          content: url("../icons/dropdown-arrow.svg");
@@ -22,6 +30,80 @@
          left: var(--arrow-left-pos);
          transform: translateX(-50%);
          filter: var(--dropdown-arrow-color);
+      }
+   }
+}
+
+.top-menu {
+   // Lưu ý giá trị tương đối dạng % như là 100% sẽ ko xuất hiện thanh cuộn được
+
+   // height: 100%; -> phải để nó kế thừa max-height của .dropdown__inner thì mới hiện thanh cuộn dọc cho top-menu__main được 
+   // max-height: inherit;
+   max-height: calc(var(--inner-max-height) - var(--inner-padding) * 2); // -> cách max-height: inherit vẫn chưa được vì menu ở màn hình nhỏ sẽ chọc xuống dưới, vì nó kế thừa chiều cao, nhưng nó lại xuất phát ở dưới nên nó bị chọc xuống
+   // -> __inner có padding:30px -> lấy chiều cao của __inner trừ đi 60px là top-menu sẽ nằm gọn ở trong, và top-menu__main kế thừa chiều cao của nó luôn
+
+   &__main {
+      width: 29.2rem;
+      // height: 100%; -> cũng để nó kế thừa max height của top_menu thì mới hiện thanh cuộn dọc 
+      max-height: inherit;
+      border-right: 1px solid var(--top-menu-border-color);
+      overflow-y: auto;
+   }
+}
+
+.menu-column {
+   display: flex;
+   gap: 1.4rem;
+
+   &__icon {
+      position: relative;
+      width: 3.6rem;
+      height: 3.6rem;
+      flex-shrink: 0; // cho icon ko bị shrink 
+   }
+
+   &__icon-1 {
+      width: 3rem;
+      height: 3rem;
+      object-fit: cover;
+   }
+
+   &__icon-2 {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 2.4rem;
+      height: 2.4rem;
+      object-fit: cover;
+      filter: var(--menu-column-icon-color);
+   }
+
+   &__heading {
+      margin-top: 4px;
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 150%;
+   }
+
+   &__content {
+      flex: 1;
+   }
+
+   &__list {
+      // margin-top: 2.6rem;
+      margin-top: 1.9rem; // chỉ còn 19 vì có padding 7px
+      // gap: 1.4rem;
+   }
+
+   &__link {
+      display: block;
+      padding: 0.7rem 0;
+      font-size: 1.4rem;
+      line-height: 142.857%;
+
+      &:hover {
+         font-weight: 500;
+         color: #0071DC;
       }
    }
 }

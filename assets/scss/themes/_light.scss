@@ -10,12 +10,19 @@ html {
    --top-act-group-shadow: rgba(237, 237, 246, 0.20);
    --top-act-group-separate: #EDEDF6;
 
+
    @include abstracts.breakpoint(lg) {
       --header-bg-color: #fff;
+      --header-shadow-color: rgba(237, 237, 246, 0.20);
    }
 
    // Dropdown Menu
    --dropdown-bg-color: #fff;
    --dropdown-shadow-color: rgba(200, 200, 200, 0.40);
    --dropdown-arrow-color:"";
+
+
+
+   // top menu
+   --top-menu-border-color: #D2D1D6;
 }

@@ -8,7 +8,9 @@
 .header {
    background: var(--header-bg-color);
 
-   @include abstracts.breakpoint(lg) {}
+   @include abstracts.breakpoint(lg) {
+      box-shadow: 0 20px 60px 10px var(--header-shadow-color);
+   }
 
    @include abstracts.breakpoint(sm) {}
 
@@ -23,7 +25,7 @@
       padding: 2rem;
    }
 
-   @include abstracts.breakpoint(sm) {
+   @include abstracts.breakpoint(md) {
       justify-content: space-between;
    }
 
@@ -41,11 +43,11 @@
 }
 
 .navbar {
-   margin-left: 144px;
+   margin-left: 129px;
 
    // margin-right: auto;
    @include abstracts.breakpoint(xl) {
-      margin-left: 50px;
+      margin-left: 28px;
    }
 
    @include abstracts.breakpoint(lg) {
@@ -58,19 +60,15 @@
    }
 
    &__item {
+
       // Khi tác động vào thẻ a > hiện dropdown
       &:hover .dropdown {
          visibility: visible;
          opacity: 1;
       }
-      // xóa padding khỏi 2 thẻ a trong nav bar để tránh bị lỗi responsive
-      &:first-child a {
-         padding-left: 0;
-      }
 
-      &:last-child a {
-         padding-right: 0;
-      }
+      // xóa padding khỏi 2 thẻ a trong nav bar để tránh bị lỗi responsive
+
    }
 
 
@@ -98,7 +96,7 @@
    // padding: 30px 0;
    margin-left: auto;
 
-   @include abstracts.breakpoint(sm) {
+   @include abstracts.breakpoint(md) {
       margin-left: 0;
    }
 
