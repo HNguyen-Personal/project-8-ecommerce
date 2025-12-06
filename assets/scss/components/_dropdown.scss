@@ -2,10 +2,11 @@
    position: absolute;
    left: 0;
    padding-top: 5.4rem;
-   // visibility: hidden;
-   // opacity: 0;
-   transition: 0.3s ease;
+   visibility: hidden;
    // mặc định cho nó ẩn
+   opacity: 0;
+   transition: 0.3s ease;
+   
 
    &__inner {
       position: relative;

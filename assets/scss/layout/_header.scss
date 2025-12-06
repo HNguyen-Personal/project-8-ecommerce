@@ -58,11 +58,12 @@
    }
 
    &__item {
+      // Khi tác động vào thẻ a > hiện dropdown
       &:hover .dropdown {
          visibility: visible;
          opacity: 1;
       }
-
+      // xóa padding khỏi 2 thẻ a trong nav bar để tránh bị lỗi responsive
       &:first-child a {
          padding-left: 0;
       }
