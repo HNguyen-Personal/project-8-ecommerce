@@ -1441,12 +1441,13 @@ html {
 }
 
 .top-menu {
+  --max-inner-height: calc(min(58.2rem, 100vh - 158px) - var(--inner-padding) * 2);
   --main-column-width: 292px;
   position: relative;
 }
 .top-menu__main {
   width: var(--main-column-width);
-  height: calc(min(58.2rem, 100vh - 158px) - var(--inner-padding) * 2);
+  height: var(--max-inner-height);
   border-right: 1px solid var(--top-menu-border-color);
   overflow-y: auto;
 }
@@ -1517,6 +1518,14 @@ html {
   grid-template-columns: repeat(3, 1fr);
   gap: var(--inner-padding);
   overflow-y: auto;
+}
+.sub-menu__notmain {
+  display: grid;
+  position: initial;
+  inset: initial;
+  grid-template-columns: repeat(4, 1fr);
+  height: var(--max-inner-height);
+  padding-left: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

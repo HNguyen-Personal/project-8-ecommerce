@@ -36,6 +36,7 @@
 }
 
 .top-menu {
+   --max-inner-height: calc(min(58.2rem, 100vh - 158px) - var(--inner-padding) * 2);
    --main-column-width: 292px;
    // Lưu ý giá trị tương đối dạng % như là 100% sẽ ko xuất hiện thanh cuộn được
 
@@ -50,7 +51,7 @@
       width: var(--main-column-width);
       // height: 100%; -> cũng để nó kế thừa max height của top_menu thì mới hiện thanh cuộn dọc 
       // max-height: inherit;
-      height: calc(min(58.2rem, 100vh - 158px) - var(--inner-padding) * 2); //-> đưa thẳng max-height từ top-menu xuống đây luôn vì inherit bị thừa
+      height: var(--max-inner-height); //-> đưa thẳng max-height từ top-menu xuống đây luôn vì inherit bị thừa
       border-right: 1px solid var(--top-menu-border-color);
       overflow-y: auto;
    }
@@ -138,4 +139,12 @@
    gap: var(--inner-padding);
    overflow-y: auto;
    // background-color: orange;
+   &__notmain{
+      display: grid;
+      position: initial;
+      inset: initial;
+      grid-template-columns: repeat(4,1fr);
+      height: var(--max-inner-height);
+      padding-left: 0;
+   }
 }
