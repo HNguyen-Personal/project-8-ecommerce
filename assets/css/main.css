@@ -1419,17 +1419,17 @@ html {
   position: absolute;
   left: 0;
   padding-top: 5.4rem;
+  visibility: hidden;
+  opacity: 0;
   transition: 0.3s ease;
 }
 .dropdown__inner {
-  --inner-max-height: min(58.2rem, 100vh - 158px);
   --inner-padding: 30px;
   position: relative;
   padding: var(--inner-padding);
   border-radius: 2rem;
   background: var(--dropdown-bg-color);
   box-shadow: 0 40px 90px 20px var(--dropdown-shadow-color);
-  max-height: var(--inner-max-height);
 }
 .dropdown__inner::before {
   content: url("../icons/dropdown-arrow.svg");
@@ -1441,11 +1441,12 @@ html {
 }
 
 .top-menu {
-  max-height: calc(var(--inner-max-height) - var(--inner-padding) * 2);
+  --main-column-width: 292px;
+  position: relative;
 }
 .top-menu__main {
-  width: 29.2rem;
-  max-height: inherit;
+  width: var(--main-column-width);
+  height: calc(min(58.2rem, 100vh - 158px) - var(--inner-padding) * 2);
   border-right: 1px solid var(--top-menu-border-color);
   overflow-y: auto;
 }
@@ -1454,16 +1455,24 @@ html {
   display: flex;
   gap: 1.4rem;
 }
+.menu-column + .menu-column {
+  margin-top: calc(var(--inner-padding) - 9px);
+}
 .menu-column__icon {
   position: relative;
   width: 3.6rem;
   height: 3.6rem;
   flex-shrink: 0;
 }
+@media (max-width: 1199.98px) {
+  .menu-column__icon {
+    display: none;
+  }
+}
 .menu-column__icon-1 {
   width: 3rem;
   height: 3rem;
-  object-fit: cover;
+  object-fit: contain;
 }
 .menu-column__icon-2 {
   position: absolute;
@@ -1471,7 +1480,7 @@ html {
   bottom: 0;
   width: 2.4rem;
   height: 2.4rem;
-  object-fit: cover;
+  object-fit: contain;
   filter: var(--menu-column-icon-color);
 }
 .menu-column__heading {
@@ -1486,15 +1495,28 @@ html {
 .menu-column__list {
   margin-top: 1.9rem;
 }
+.menu-column__item--active .sub-menu {
+  display: grid;
+}
+.menu-column__item--active > .menu-column__link, .menu-column__item:hover > .menu-column__link {
+  font-weight: 500;
+  color: #0071DC;
+}
 .menu-column__link {
   display: block;
   padding: 0.7rem 0;
   font-size: 1.4rem;
   line-height: 142.857%;
 }
-.menu-column__link:hover {
-  font-weight: 500;
-  color: #0071DC;
+
+.sub-menu {
+  padding-left: var(--inner-padding);
+  position: absolute;
+  inset: 0 0 0 var(--main-column-width);
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--inner-padding);
+  overflow-y: auto;
 }
 
 /*# sourceMappingURL=main.css.map */
