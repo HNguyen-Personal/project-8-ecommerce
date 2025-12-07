@@ -32,14 +32,6 @@
    @include abstracts.breakpoint(sm) {
       padding: 1.6rem;
    }
-
-   &__more {
-      display: none;
-
-      @include abstracts.breakpoint(lg) {
-         display: block;
-      }
-   }
 }
 
 .navbar {
@@ -51,12 +43,34 @@
    }
 
    @include abstracts.breakpoint(lg) {
-      display: none;
+      // display: none;
+      position: fixed;
+      inset: 0 50% 0 0;
+      margin-left: 0;
+      z-index: 9;
+      background-color: #fff;
+      padding: 20px 0;
+      translate: -100%;
+      transition: translate 0.5s ease;
+
+      &.show {
+         translate: 0;
+      }
+
+      &.show~&__overlay {
+         opacity: 1;
+         visibility: visible;
+      }
    }
 
    &__list {
       @extend %flexItemCenter;
+
       // gap: 30px
+      @include abstracts.breakpoint(lg) {
+         flex-direction: column;
+         align-items: flex-start;
+      }
    }
 
    &__item {
@@ -67,8 +81,27 @@
          opacity: 1;
       }
 
-      // xóa padding khỏi 2 thẻ a trong nav bar để tránh bị lỗi responsive
+      @include abstracts.breakpoint(lg) {
+         width: 100%;
+         //ẩn drop down menu ở trên tablet
+         &:hover .dropdown {
+            visibility: hidden;
+            opacity: 0;
+         }
+      }
+   }
 
+   &__overlay {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity, visibility 0.5s ease;
+
+      @include abstracts.breakpoint(lg) {
+         position: fixed;
+         z-index: 8;
+         background: rgba(0, 0, 0, 0.4);
+         inset: 0;
+      }
    }
 
 
@@ -76,16 +109,29 @@
       height: 50px;
       // bỏ gap 30px ở __list -> thêm 15px padding vào ở đây để ko bị khoảng trống giữa các thẻ li -> ko bị nháy khi di chuột
       padding: 0 1.5rem;
-      font-family: Gordita;
       font-size: 1.5rem;
       font-weight: 500;
       line-height: 1.46;
       @extend %flexItemCenter;
       gap: 6px;
+
+      @include abstracts.breakpoint(lg) {
+         padding: 0 4rem;
+         font-size: 1.6rem;
+         line-height: 150%;
+         justify-content: space-between;
+      }
    }
 
    &__arrow {
       margin-top: 3px;
+   }
+
+   &__close--btn {
+
+      @include abstracts.breakpoint(lg) {
+         padding: 1rem 4rem;
+      }
    }
 
 }
@@ -107,16 +153,6 @@
       border-radius: 0.8rem;
       background: var(--top-act-group-bg-color);
       box-shadow: 0 20px 60px 10px var(--top-act-group-shadow);
-
-      @include abstracts.breakpoint(md) {
-         display: none;
-      }
-   }
-
-   &__group--single {
-      @include abstracts.breakpoint(lg) {
-         display: none;
-      }
    }
 
    &__group--single &__btn {

@@ -35,12 +35,15 @@ button {
 }
 
 // 4 thẻ này có css mặc định > cần reset
+a,
+img,
 button,
 input,
 textarea,
 select {
    font-family: inherit;
    color: inherit;
+   -webkit-tap-highlight-color: transparent;
 }
 
 .icon {
