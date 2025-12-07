@@ -48,19 +48,26 @@
       inset: 0 50% 0 0;
       margin-left: 0;
       z-index: 9;
-      background-color: #fff;
+      background-color: var(--sidebar-bg);
       padding: 20px 0;
       translate: -100%;
+      border-radius: 0px 20px 20px 0;
       transition: translate 0.5s ease;
-
+      
       &.show {
          translate: 0;
+         box-shadow: 0px 40px 90px 20px var(--sidebar-shadow);
       }
 
       &.show~&__overlay {
          opacity: 1;
          visibility: visible;
+         // display: block;
       }
+   }
+
+   @include abstracts.breakpoint(sm) {
+      inset: 0 20% 0 0;
    }
 
    &__list {
@@ -70,6 +77,17 @@
       @include abstracts.breakpoint(lg) {
          flex-direction: column;
          align-items: flex-start;
+         height: calc(100% - 28px);
+         overflow-y: auto;
+         overscroll-behavior: contain;
+      }
+
+      @include abstracts.breakpoint(md) {
+         height: calc(100% - 142px);
+      }
+
+      @include abstracts.breakpoint(sm) {
+         height: calc(100% - 120px);
       }
    }
 
@@ -77,16 +95,22 @@
 
       // Khi tác động vào thẻ a > hiện dropdown
       &:hover .dropdown {
-         visibility: visible;
-         opacity: 1;
+         // visibility: visible;
+         // opacity: 1;
+         display: block;
       }
 
       @include abstracts.breakpoint(lg) {
          width: 100%;
-         //ẩn drop down menu ở trên tablet
+
          &:hover .dropdown {
-            visibility: hidden;
-            opacity: 0;
+            // visibility: hidden;
+            // opacity: 0;
+            display: none;
+         }
+
+         &--active .dropdown {
+            display: block !important;
          }
       }
    }
@@ -121,16 +145,34 @@
          line-height: 150%;
          justify-content: space-between;
       }
+
+      @include abstracts.breakpoint(sm) {
+         padding: 0 2rem;
+         height: 44px;
+      }
    }
 
    &__arrow {
       margin-top: 3px;
+
+      @include abstracts.breakpoint(lg) {
+         rotate: -90deg;
+         transition: rotate 0.3s ease;
+      }
+   }
+
+   &__item--active &__arrow {
+      rotate: 0deg;
+
    }
 
    &__close--btn {
-
       @include abstracts.breakpoint(lg) {
          padding: 1rem 4rem;
+      }
+
+      @include abstracts.breakpoint(sm) {
+         padding: 0 2rem 1rem;
       }
    }
 
@@ -184,5 +226,32 @@
       border-radius: 0.8rem;
       display: block;
       cursor: pointer;
+   }
+}
+
+.nav-btn {
+   height: 50px;
+   padding: 0 40px;
+   align-items: center;
+
+   &__title,
+   &__qty {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 146.667%;
+
+   }
+
+   &__title {
+      margin-left: 16px;
+   }
+
+   &__qty {
+      margin-left: auto;
+   }
+
+   @include abstracts.breakpoint(sm) {
+      padding: 0 2rem;
+      height: 44px;
    }
 }

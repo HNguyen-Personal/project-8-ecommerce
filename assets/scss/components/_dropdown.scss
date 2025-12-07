@@ -3,14 +3,19 @@
 .dropdown {
    // lấy giá trị 1240px cho tới khi 100% < 1240px
    width: min(1240px, 100%);
-
    position: absolute;
    left: 0;
    padding-top: 5.4rem;
    // mặc định cho nó ẩn
-   visibility: hidden;
-   opacity: 0;
+   // visibility: hidden;
+   // opacity: 0;
+   display: none;
    transition: 0.3s ease;
+
+   @include abstracts.breakpoint(lg) {
+      position: initial;
+      padding-top: 0;
+   }
 
    &__inner {
       // --inner-max-height: min(58.2rem, 100vh - 158px);
@@ -31,6 +36,21 @@
          left: var(--arrow-left-pos);
          transform: translateX(-50%);
          filter: var(--dropdown-arrow-color);
+      }
+
+      @include abstracts.breakpoint(lg) {
+         border-radius: 0;
+         background: transparent;
+         box-shadow: none;
+         padding: 0 40px;
+
+         &::before {
+            content: none;
+         }
+      }
+
+      @include abstracts.breakpoint(sm) {
+         padding: 0 20px;
       }
    }
 }
@@ -54,6 +74,12 @@
       height: var(--max-inner-height); //-> đưa thẳng max-height từ top-menu xuống đây luôn vì inherit bị thừa
       border-right: 1px solid var(--top-menu-border-color);
       overflow-y: auto;
+
+      @include abstracts.breakpoint(lg) {
+         width: 100%;
+         height: auto;
+         border-right: none;
+      }
    }
 }
 
@@ -66,6 +92,10 @@
       margin-top: calc(var(--inner-padding) - 9px);
    }
 
+   @include abstracts.breakpoint(lg) {
+      margin-top: 10px;
+   }
+
    &__icon {
       position: relative;
       width: 3.6rem;
@@ -74,6 +104,10 @@
 
       @include abstracts.breakpoint(xl) {
          display: none;
+      }
+
+      @include abstracts.breakpoint(lg) {
+         display: block;
       }
    }
 
@@ -98,6 +132,10 @@
       font-size: 1.6rem;
       font-weight: 500;
       line-height: 150%;
+
+      @include abstracts.breakpoint(lg) {
+         margin-bottom: 20px;
+      }
    }
 
    &__content {
@@ -107,7 +145,11 @@
    &__list {
       // margin-top: 2.6rem;
       margin-top: 1.9rem; // chỉ còn 19 vì có padding 7px
+
       // gap: 1.4rem;
+      @include abstracts.breakpoint(lg) {
+         margin-top: 0;
+      }
    }
 
    &__item {
@@ -138,13 +180,26 @@
    grid-template-columns: repeat(3, 1fr);
    gap: var(--inner-padding);
    overflow-y: auto;
+
+   @include abstracts.breakpoint(lg) {
+      position: initial;
+      grid-template-columns: 1fr;
+      padding-left: 0;
+   }
+
    // background-color: orange;
-   &__notmain{
+   &__notmain {
       display: grid;
       position: initial;
       inset: initial;
-      grid-template-columns: repeat(4,1fr);
+      grid-template-columns: repeat(4, 1fr);
       height: var(--max-inner-height);
       padding-left: 0;
+
+      @include abstracts.breakpoint(lg) {
+         grid-template-columns: 1fr;
+         height: auto;
+      }
    }
+
 }
