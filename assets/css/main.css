@@ -167,6 +167,8 @@ button {
   border: none;
   outline: none;
   background: transparent;
+  padding: 0;
+  cursor: pointer;
 }
 
 a,
@@ -1330,6 +1332,11 @@ html.dark {
   --cate-item-bg: #171C28;
   --cate-item-thumb-bg: #292E39;
   --cate-item-title-color: #fff;
+  --filter-btn-bg-color: #171C28;
+  --filter-btn-color: #FFFFFF;
+  --product-cart-bg: #171C28;
+  --product-cart-shadow: rgba(0, 0, 0, 0.20);
+  --like-btn-shadow: rgba(124, 124, 124, 0.20);
 }
 
 html {
@@ -1362,6 +1369,13 @@ html {
   html {
     --cate-item-bg: #fff;
   }
+}
+html {
+  --filter-btn-bg-color: #fff;
+  --filter-btn-color: #6C6C72;
+  --product-cart-bg: #fff;
+  --product-cart-shadow: rgba(237, 237, 246, 0.20);
+  --like-btn-shadow: rgba(124, 124, 124, 0.20);
 }
 
 .top-act__btn, .top-act__group, .top-act, .navbar__link, .navbar__list, .top-bar {
@@ -1949,6 +1963,75 @@ html {
   }
 }
 
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  background: var(--filter-btn-bg-color);
+  color: var(--filter-btn-color);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 142.857%;
+}
+
+.like-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  box-shadow: 0 20px 60px var(--like-btn-shadow);
+}
+
+.product-card {
+  border-radius: 2rem;
+  background: var(--product-cart-bg);
+  box-shadow: 0 20px 60px 10px var(--product-cart-shadow);
+  padding: 1.6rem;
+}
+.product-card__img-wrap {
+  padding-top: 100%;
+  position: relative;
+}
+.product-card__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.product-card__like-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.product-card__title {
+  margin-top: 1.6rem;
+}
+.product-card__title, .product-card__price, .product-card__score {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 150%;
+}
+.product-card__brand {
+  margin: 1.6rem 0;
+  color: #9E9DA8;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 146.667%;
+}
+.product-card__row {
+  display: flex;
+  align-items: center;
+}
+.product-card__star {
+  margin: 0 0.6rem 0 auto;
+}
+
 .home__container {
   margin-top: 40px;
 }
@@ -1975,6 +2058,15 @@ html {
   .home__cate {
     --grid-gutter-y: 20px;
   }
+}
+.home__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.home__row > .home__heading {
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

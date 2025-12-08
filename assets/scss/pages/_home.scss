@@ -27,4 +27,17 @@
          --grid-gutter-y: 20px;
       }
    }
+
+   &__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+   }
+
+   &__row > &__heading {
+      margin-bottom: 0;
+   }
 }
+
+
