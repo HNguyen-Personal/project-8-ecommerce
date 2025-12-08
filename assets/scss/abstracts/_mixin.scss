@@ -6,7 +6,7 @@ $grid-breakpoints: (
    xxl: 1400px
 );
 
-@mixin breakpoint($key) {
+@mixin screen($key) {
    // dùng hàm map-get để lấy giá trị từ biến $grid-breakpoints có key là $key (key ở biến là xs,sm,md,lg,xl,xxl -> nên khi truyền chính giá trị key đó vào mixin này thì sẽ lôi ra được value của key đó ở trong biến
    $breakpoint: map-get($grid-breakpoints, $key);
 
