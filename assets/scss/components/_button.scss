@@ -19,9 +19,73 @@
 .like-btn {
    display: flex;
    justify-content: center;
-   align-items:center;
+   align-items: center;
    width: 5rem;
    height: 5rem;
    border-radius: 50%;
    box-shadow: 0 20px 60px var(--like-btn-shadow);
+
+   &:not(&--liked) &__icon--liked {
+      display: none;
+   }
+
+   &--liked &__icon {
+      display: none;
+   }
+
+   &__icon--liked {
+      position: relative;
+      margin-top: 7px;
+   }
+}
+
+
+// Buttons
+
+.btn {
+   height: 46px;
+   background: #F8F8FB;
+   font-size: 1.8rem;
+   font-weight: 500;
+   border-radius: 0.6rem;
+   padding: 0 20px;
+   user-select: none;
+
+   +.btn {
+      margin-left: 20px;
+   }
+
+   &--text {
+      background: transparent;
+      color: #9E9DA8;
+      font-weight: 400;
+   }
+
+   &--primary {
+      background: #FFB700;
+      color: #1A162E;
+   }
+
+   &--outline {
+      background: transparent;
+      border: 1px solid #D2D1D6;
+   }
+
+   &--round {
+      border-radius: 99px;
+   }
+
+   &[disabled] {
+      opacity: 0.5;
+      pointer-events: none;
+   }
+
+   &--disable {
+      opacity: 0.5;
+      pointer-events: none;
+   }
+
+   &:hover {
+      opacity: 0.9;
+   }
 }
