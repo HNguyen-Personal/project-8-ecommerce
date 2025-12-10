@@ -175,6 +175,7 @@ a,
 img,
 button,
 input,
+label,
 textarea,
 select {
   font-family: inherit;
@@ -1338,6 +1339,17 @@ input {
     transform: translateY(0);
   }
 }
+@keyframes shake {
+  0%, 100% {
+    translate: 0;
+  }
+  25%, 75% {
+    translate: 4px;
+  }
+  50% {
+    translate: -4px;
+  }
+}
 html.dark {
   --text-color: #fff;
   --icon-color: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(119deg) brightness(103%) contrast(106%);
@@ -1438,7 +1450,7 @@ html {
 }
 @media (max-width: 991.98px) {
   .top-bar {
-    padding: 2rem;
+    padding: 2rem 0;
   }
 }
 @media (max-width: 767.98px) {
@@ -1448,7 +1460,28 @@ html {
 }
 @media (max-width: 575.98px) {
   .top-bar {
-    padding: 1.6rem;
+    padding: 1.6rem 0;
+  }
+}
+@media (max-width: 991.98px) {
+  .top-bar__logo {
+    gap: 10px !important;
+    margin-left: 40px;
+  }
+  .top-bar__logo-title {
+    font-size: 1.8rem !important;
+  }
+  .top-bar__logo-img {
+    width: 24px;
+  }
+}
+@media (max-width: 767.98px) {
+  .top-bar__logo {
+    margin-left: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
   }
 }
 
@@ -1908,32 +1941,10 @@ html {
   align-items: center;
   gap: 14px;
 }
-@media (max-width: 991.98px) {
-  .logo {
-    gap: 10px;
-    margin-left: 40px;
-  }
-}
-@media (max-width: 767.98px) {
-  .logo {
-    gap: 10px;
-    margin-left: 0;
-  }
-}
 .logo__title {
   font-size: 2.2rem;
   font-weight: 700;
   line-height: 1.45;
-}
-@media (max-width: 991.98px) {
-  .logo__title {
-    font-size: 1.8rem;
-  }
-}
-@media (max-width: 991.98px) {
-  .logo__img {
-    width: 24px;
-  }
 }
 
 .dropdown {
@@ -2657,8 +2668,8 @@ html {
   */
 }
 .form__group:has(:invalid):has(.form__input:not(:placeholder-shown)) .form__text-input {
-  border-color: red;
-  background: rgba(255, 0, 0, 0.1);
+  border-color: #ed4337;
+  background: rgba(237, 67, 55, 0.1);
 }
 .form__group:has(:invalid):has(.form__input:not(:placeholder-shown)) .form__error,
 .form__group:has(:invalid):has(.form__input:not(:placeholder-shown)) .form__input-icon-error {
@@ -2674,6 +2685,13 @@ html {
   height: 50px;
   border-radius: 1rem;
   border: 1.5px solid #D2D1D6;
+}
+@media (max-width: 767.98px) {
+  .form__text-input {
+    height: 48px;
+  }
+}
+.form__text-input {
   /* Khi user click vào input bên trong → đổi border */
 }
 .form__text-input:focus-within {
@@ -2695,12 +2713,17 @@ html {
   height: 20px;
   display: none;
   margin-left: 12px;
-  animation: vertical-shaking 0.8s;
+  animation: shake 0.5s;
+}
+@media (max-width: 767.98px) {
+  .form__input {
+    font-size: 1.6rem;
+  }
 }
 .form__error {
   font-size: 1.4rem;
   display: none;
-  color: red;
+  color: #ed4337;
   margin-top: 10px;
 }
 .form {
@@ -2722,6 +2745,11 @@ html {
   color: #9E9DA8;
   font-size: 1.5rem;
   font-weight: 500;
+}
+@media (max-width: 767.98px) {
+  .form__checkbox-label {
+    font-size: 1.4rem;
+  }
 }
 .form__checkbox {
   /* Tạo 2 pseudo-element để vẽ checkbox ▢ và dấu ✓ */
@@ -2812,8 +2840,13 @@ html {
 }
 
 .auth {
-  min-height: 100vh;
   display: flex;
+  min-height: 100vh;
+}
+@supports (-webkit-touch-callout: none) {
+  .auth {
+    min-height: -webkit-fill-available;
+  }
 }
 .auth__intro, .auth__content {
   flex: 1;
@@ -2840,6 +2873,11 @@ html {
   font-size: 1.8rem;
   font-weight: 500;
   line-height: 144.444%;
+}
+@media (max-width: 767.98px) {
+  .auth__intro-text {
+    font-size: 1.5rem;
+  }
 }
 .auth__intro-logo, .auth__intro-next {
   position: absolute;
@@ -2883,6 +2921,11 @@ html {
   font-weight: 500;
   line-height: 146.667%;
 }
+@media (max-width: 767.98px) {
+  .auth__heading {
+    font-size: 2.2rem;
+  }
+}
 .auth__desc {
   margin-top: 10px;
   color: #9e9da8;
@@ -2890,11 +2933,20 @@ html {
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 146.667%;
-  /* */
+}
+@media (max-width: 767.98px) {
+  .auth__desc {
+    font-size: 1.4rem;
+  }
 }
 .auth__form {
   width: 100%;
   margin-top: 30px;
+}
+@media (max-width: 767.98px) {
+  .auth__form {
+    margin-top: 0;
+  }
 }
 .auth__link {
   color: #0071DC;
@@ -2902,9 +2954,19 @@ html {
   font-weight: 500;
   line-height: 146.667%;
 }
+@media (max-width: 767.98px) {
+  .auth__link {
+    font-size: 1.4rem;
+  }
+}
 .auth__link--lg {
   font-size: 1.8rem;
   line-height: 144.444%;
+}
+@media (max-width: 767.98px) {
+  .auth__link--lg {
+    font-size: 1.6rem;
+  }
 }
 .auth__btn-group {
   margin-top: 50px;
@@ -2921,6 +2983,11 @@ html {
   font-size: 1.8rem;
   font-weight: 400;
   line-height: 144.444%;
+}
+@media (max-width: 767.98px) {
+  .auth__text {
+    font-size: 1.6rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

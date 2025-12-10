@@ -23,7 +23,7 @@
    z-index: 1;
 
    @include abstracts.screen(lg) {
-      padding: 2rem;
+      padding: 2rem 0;
    }
 
    @include abstracts.screen(md) {
@@ -31,8 +31,36 @@
    }
 
    @include abstracts.screen(sm) {
-      padding: 1.6rem;
+      padding: 1.6rem 0;
    }
+
+   &__logo {
+      @include abstracts.screen(lg) {
+         gap: 10px !important;
+         margin-left: 40px;
+
+         &-title {
+            font-size: 1.8rem !important;
+         }
+
+         &-img {
+            width: 24px;
+         }
+      }
+
+      @include abstracts.screen(md) {
+         margin-left: 0;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         translate: -50% -50%;
+      }
+
+
+
+
+   }
+
 }
 
 .navbar {
@@ -187,7 +215,8 @@
 
    @include abstracts.screen(md) {
       margin-left: 0;
-      &__sign-up{
+
+      &__sign-up {
          height: 40px !important;
          padding: 0 8px !important;
          font-size: 1.5rem !important;

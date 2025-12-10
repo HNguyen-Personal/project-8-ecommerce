@@ -1,3 +1,7 @@
+@use "../abstracts";
+
+$error-color: #ed4337;
+
 .form {
 
    /* Khi trong form có bất kỳ ô nào :invalid → disable nút Submit */
@@ -23,8 +27,8 @@
    */
    &__group:has(:invalid):has(&__input:not(:placeholder-shown)) {
       .form__text-input {
-         border-color: red;
-         background: rgba($color: red, $alpha: 0.1);
+         border-color: $error-color;
+         background: rgba($color: $error-color, $alpha: 0.1);
       }
 
       .form__error,
@@ -44,6 +48,10 @@
       height: 50px;
       border-radius: 1rem;
       border: 1.5px solid #D2D1D6;
+
+      @include abstracts.screen(md) {
+         height: 48px;
+      }
 
       /* Khi user click vào input bên trong → đổi border */
       &:focus-within {
@@ -68,15 +76,19 @@
             height: 20px;
             display: none;
             margin-left: 12px;
-            animation: vertical-shaking 0.8s;
+            animation: shake 0.5s;
          }
+      }
+
+      @include abstracts.screen(md) {
+         font-size: 1.6rem;
       }
    }
 
    &__error {
       font-size: 1.4rem;
       display: none;
-      color: red;
+      color: $error-color;
       margin-top: 10px;
    }
 
@@ -97,6 +109,9 @@
          color: #9E9DA8;
          font-size: 1.5rem;
          font-weight: 500;
+         @include abstracts.screen(md){
+            font-size: 1.4rem;
+         }
       }
 
       /* Tạo 2 pseudo-element để vẽ checkbox ▢ và dấu ✓ */
