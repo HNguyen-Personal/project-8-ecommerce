@@ -1321,6 +1321,23 @@ input {
     display: none !important;
   }
 }
+@keyframes vertical-shaking {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 html.dark {
   --text-color: #fff;
   --icon-color: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(119deg) brightness(103%) contrast(106%);
@@ -1397,6 +1414,8 @@ html {
   --filter-form-bg: #fff;
   --filter-form-shadow: rgba(200, 200, 200, 0.40);
   --filter-form-tag-bg: #F8F8FB;
+  --auth-intro-bg: #FAFAFD;
+  --auth-content-bg: #fff;
 }
 
 .top-act__btn, .top-act__group, .top-act, .navbar__link, .navbar__list, .top-bar {
@@ -1566,6 +1585,11 @@ html {
   .top-act {
     margin-left: 0;
   }
+  .top-act__sign-up {
+    height: 40px !important;
+    padding: 0 8px !important;
+    font-size: 1.5rem !important;
+  }
 }
 .top-act__group {
   min-width: 50px;
@@ -1707,6 +1731,18 @@ html {
 }
 .footer__socials-link {
   width: 30px;
+}
+.footer__socials-link-facebook {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(93%) saturate(3065%) hue-rotate(203deg) brightness(99%) contrast(92%);
+}
+.footer__socials-link-youtube {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(56%) saturate(7470%) hue-rotate(357deg) brightness(107%) contrast(112%);
+}
+.footer__socials-link-instagram {
+  filter: brightness(0) saturate(100%) invert(28%) sepia(73%) saturate(1362%) hue-rotate(291deg) brightness(93%) contrast(94%);
+}
+.footer__socials-link-linkdedin {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(75%) saturate(7124%) hue-rotate(186deg) brightness(96%) contrast(101%);
 }
 .footer {
   /* ===== Columns (Shop / Help / About / Newsletter) ===== */
@@ -2262,6 +2298,10 @@ html {
 }
 
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   height: 46px;
   background: #F8F8FB;
   font-size: 1.8rem;
@@ -2270,7 +2310,7 @@ html {
   padding: 0 20px;
   user-select: none;
 }
-.btn + .btn {
+.btn + .btn:not(.btn-no-margin) {
   margin-left: 20px;
 }
 .btn--text {
@@ -2594,6 +2634,146 @@ html {
   }
 }
 
+.form {
+  /* Khi trong form có bất kỳ ô nào :invalid → disable nút Submit */
+}
+.form:has(:invalid) .form__submit-btn {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.form__group {
+  margin-top: 30px;
+}
+.form__group--inline {
+  display: flex;
+  align-items: center;
+}
+.form {
+  /* 
+     Khi .form__group chứa:
+     1. Một input bị invalid
+     2. Và input đó KHÔNG còn placeholder (tức là user đã nhập nhưng nhập sai)
+     → Thì hiển thị border đỏ, icon lỗi, text lỗi
+  */
+}
+.form__group:has(:invalid):has(.form__input:not(:placeholder-shown)) .form__text-input {
+  border-color: red;
+  background: rgba(255, 0, 0, 0.1);
+}
+.form__group:has(:invalid):has(.form__input:not(:placeholder-shown)) .form__error,
+.form__group:has(:invalid):has(.form__input:not(:placeholder-shown)) .form__input-icon-error {
+  display: block;
+}
+.form__group:has(:invalid):has(.form__input:not(:placeholder-shown)) .form__input-icon {
+  display: none;
+}
+.form__text-input {
+  padding: 0 1.2rem;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-radius: 1rem;
+  border: 1.5px solid #D2D1D6;
+  /* Khi user click vào input bên trong → đổi border */
+}
+.form__text-input:focus-within {
+  border-color: #77DAE6;
+}
+.form__input {
+  flex: 1;
+  height: 100%;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.form__input::placeholder {
+  color: #D2D1D6;
+}
+.form__input-icon {
+  margin-left: 12px;
+}
+.form__input-icon-error {
+  height: 20px;
+  display: none;
+  margin-left: 12px;
+  animation: vertical-shaking 0.8s;
+}
+.form__error {
+  font-size: 1.4rem;
+  display: none;
+  color: red;
+  margin-top: 10px;
+}
+.form {
+  /* -----------------------------------------------
+     TÙY CHỈNH CHECKBOX THAY CHO STYLE MẶC ĐỊNH CỦA TRÌNH DUYỆT
+     ----------------------------------------------- */
+}
+.form__checkbox {
+  position: relative;
+  /* Để ::before và ::after nằm đúng vị trí */
+  display: flex;
+  align-items: center;
+  user-select: none;
+  /* Không cho bôi đen chữ khi click */
+  /* Label nằm bên phải ô checkbox */
+}
+.form__checkbox-label {
+  margin-left: 29px;
+  color: #9E9DA8;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.form__checkbox {
+  /* Tạo 2 pseudo-element để vẽ checkbox ▢ và dấu ✓ */
+}
+.form__checkbox::before, .form__checkbox::after {
+  content: "";
+  position: absolute;
+}
+.form__checkbox {
+  /* 
+     ::before = khung checkbox (hình vuông)
+     Mặc định là xám
+  */
+}
+.form__checkbox::before {
+  width: 19px;
+  height: 19px;
+  border-radius: 5px;
+  border: 1.5px solid #9E9DA8;
+}
+.form {
+  /* 
+     Khi input[type=checkbox] bên trong được check:
+     .form__checkbox:has(:checked)
+     → Tô màu ô vuông và hiển thị dấu ✓
+  */
+}
+.form__checkbox:has(:checked) {
+  /* Ô vuông thành màu vàng */
+}
+.form__checkbox:has(:checked)::before {
+  border-color: #ffb700;
+  background-color: #ffb700;
+}
+.form__checkbox:has(:checked) {
+  /* ::after = dấu check (vẽ bằng border) */
+}
+.form__checkbox:has(:checked)::after {
+  width: 15px;
+  height: 9px;
+  border: 3px solid;
+  border-color: transparent transparent #fff #fff;
+  /* Chỉ giữ góc dưới bên trái */
+  rotate: -45deg;
+  /* Xoay thành dấu ✓ */
+  left: 2px;
+  top: 1px;
+}
+.form__pull-right {
+  margin-left: auto;
+}
+
 .home__container {
   margin-top: 40px;
 }
@@ -2629,6 +2809,118 @@ html {
 }
 .home__row > .home__heading {
   margin-bottom: 0;
+}
+
+.auth {
+  min-height: 100vh;
+  display: flex;
+}
+.auth__intro, .auth__content {
+  flex: 1;
+  padding: 0 30px;
+}
+.auth__intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  background-color: var(--auth-intro-bg);
+}
+.auth__intro-logo {
+  display: none;
+}
+.auth__intro-img {
+  max-width: 100%;
+}
+.auth__intro-text {
+  max-width: 412px;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 144.444%;
+}
+.auth__intro-logo, .auth__intro-next {
+  position: absolute;
+  translate: -50%;
+}
+.auth__intro-logo {
+  top: 80px;
+  left: 50%;
+}
+.auth__intro-next {
+  bottom: 50px;
+  left: 50%;
+}
+.auth__content {
+  background: var(--auth-content-bg);
+}
+@media (max-width: 767.98px) {
+  .auth__content {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    transition: translate 0.3s;
+    overflow-y: auto;
+  }
+  .auth__content.hide {
+    translate: 100%;
+  }
+}
+.auth__content-inner {
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: min(460px, 100%);
+  margin: 0 auto;
+}
+.auth__heading {
+  margin-top: 50px;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 146.667%;
+}
+.auth__desc {
+  margin-top: 10px;
+  color: #9e9da8;
+  padding: 0 30px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 146.667%;
+  /* */
+}
+.auth__form {
+  width: 100%;
+  margin-top: 30px;
+}
+.auth__link {
+  color: #0071DC;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 146.667%;
+}
+.auth__link--lg {
+  font-size: 1.8rem;
+  line-height: 144.444%;
+}
+.auth__btn-group {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.auth__btn {
+  width: 100%;
+}
+.auth__text {
+  margin-top: 10.8rem;
+  color: #9E9DA8;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 144.444%;
 }
 
 /*# sourceMappingURL=main.css.map */

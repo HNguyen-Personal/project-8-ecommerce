@@ -1,0 +1,151 @@
+.form {
+
+   /* Khi trong form có bất kỳ ô nào :invalid → disable nút Submit */
+   &:has(:invalid) &__submit-btn {
+      opacity: 0.5;
+      pointer-events: none;
+   }
+
+   &__group {
+      margin-top: 30px;
+
+      &--inline {
+         display: flex;
+         align-items: center;
+      }
+   }
+
+   /* 
+      Khi .form__group chứa:
+      1. Một input bị invalid
+      2. Và input đó KHÔNG còn placeholder (tức là user đã nhập nhưng nhập sai)
+      → Thì hiển thị border đỏ, icon lỗi, text lỗi
+   */
+   &__group:has(:invalid):has(&__input:not(:placeholder-shown)) {
+      .form__text-input {
+         border-color: red;
+         background: rgba($color: red, $alpha: 0.1);
+      }
+
+      .form__error,
+      .form__input-icon-error {
+         display: block;
+      }
+
+      .form__input-icon {
+         display: none;
+      }
+   }
+
+   &__text-input {
+      padding: 0 1.2rem;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      border-radius: 1rem;
+      border: 1.5px solid #D2D1D6;
+
+      /* Khi user click vào input bên trong → đổi border */
+      &:focus-within {
+         border-color: #77DAE6;
+      }
+   }
+
+   &__input {
+      flex: 1;
+      height: 100%;
+      font-size: 1.8rem;
+      font-weight: 500;
+
+      &::placeholder {
+         color: #D2D1D6;
+      }
+
+      &-icon {
+         margin-left: 12px;
+
+         &-error {
+            height: 20px;
+            display: none;
+            margin-left: 12px;
+            animation: vertical-shaking 0.8s;
+         }
+      }
+   }
+
+   &__error {
+      font-size: 1.4rem;
+      display: none;
+      color: red;
+      margin-top: 10px;
+   }
+
+   /* -----------------------------------------------
+      TÙY CHỈNH CHECKBOX THAY CHO STYLE MẶC ĐỊNH CỦA TRÌNH DUYỆT
+      ----------------------------------------------- */
+   &__checkbox {
+      position: relative;
+      /* Để ::before và ::after nằm đúng vị trí */
+      display: flex;
+      align-items: center;
+      user-select: none;
+      /* Không cho bôi đen chữ khi click */
+
+      /* Label nằm bên phải ô checkbox */
+      &-label {
+         margin-left: 29px;
+         color: #9E9DA8;
+         font-size: 1.5rem;
+         font-weight: 500;
+      }
+
+      /* Tạo 2 pseudo-element để vẽ checkbox ▢ và dấu ✓ */
+      &::before,
+      &::after {
+         content: "";
+         position: absolute;
+      }
+
+      /* 
+         ::before = khung checkbox (hình vuông)
+         Mặc định là xám
+      */
+      &::before {
+         width: 19px;
+         height: 19px;
+         border-radius: 5px;
+         border: 1.5px solid #9E9DA8;
+      }
+   }
+
+   /* 
+      Khi input[type=checkbox] bên trong được check:
+      .form__checkbox:has(:checked)
+      → Tô màu ô vuông và hiển thị dấu ✓
+   */
+   &__checkbox:has(:checked) {
+
+      /* Ô vuông thành màu vàng */
+      &::before {
+         border-color: #ffb700;
+         background-color: #ffb700;
+      }
+
+      /* ::after = dấu check (vẽ bằng border) */
+      &::after {
+         width: 15px;
+         height: 9px;
+         border: 3px solid;
+         border-color: transparent transparent #fff #fff;
+         /* Chỉ giữ góc dưới bên trái */
+         rotate: -45deg;
+         /* Xoay thành dấu ✓ */
+         left: 2px;
+         top: 1px;
+      }
+   }
+
+   &__pull-right {
+      margin-left: auto;
+   }
+}

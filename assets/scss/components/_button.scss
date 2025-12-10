@@ -43,6 +43,10 @@
 // Buttons
 
 .btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 1rem;
    height: 46px;
    background: #F8F8FB;
    font-size: 1.8rem;
@@ -52,7 +56,9 @@
    user-select: none;
 
    +.btn {
-      margin-left: 20px;
+      &:not(.btn-no-margin) {
+         margin-left: 20px;
+      }
    }
 
    &--text {
