@@ -1384,6 +1384,11 @@ html.dark {
   --filter-form-shadow: rgba(0, 0, 0, 0.40);
   --filter-form-tag-bg: #171C28;
   --filter-form-arrow: var(--dropdown-arrow-color);
+  --auth-intro-bg: #171C28;
+  --auth-content-bg: #292E39;
+  --auth-intro-text-color:#B9BABE;
+  --auth-heading-color: #B9BABE;
+  --form-placeholder-color:#B9BABE;
 }
 
 html {
@@ -1428,6 +1433,7 @@ html {
   --filter-form-tag-bg: #F8F8FB;
   --auth-intro-bg: #FAFAFD;
   --auth-content-bg: #fff;
+  --form-placeholder-color:#D2D1D6;
 }
 
 .top-act__btn, .top-act__group, .top-act, .navbar__link, .navbar__list, .top-bar {
@@ -2655,6 +2661,11 @@ html {
 .form__group {
   margin-top: 30px;
 }
+@media (max-width: 767.98px) {
+  .form__group {
+    margin-top: 20px;
+  }
+}
 .form__group--inline {
   display: flex;
   align-items: center;
@@ -2704,7 +2715,7 @@ html {
   font-weight: 500;
 }
 .form__input::placeholder {
-  color: #D2D1D6;
+  color: var(--form-placeholder-color);
 }
 .form__input-icon {
   margin-left: 12px;
@@ -2873,6 +2884,7 @@ html {
   font-size: 1.8rem;
   font-weight: 500;
   line-height: 144.444%;
+  color: var(--auth-intro-text-color);
 }
 @media (max-width: 767.98px) {
   .auth__intro-text {
@@ -2915,21 +2927,28 @@ html {
   width: min(460px, 100%);
   margin: 0 auto;
 }
+@media (max-width: 575.98px) {
+  .auth__content-inner {
+    padding: 32px 0;
+  }
+}
 .auth__heading {
   margin-top: 50px;
   font-size: 3rem;
   font-weight: 500;
   line-height: 146.667%;
+  color: var(--auth-heading-color);
 }
 @media (max-width: 767.98px) {
   .auth__heading {
     font-size: 2.2rem;
+    margin-top: 40px;
   }
 }
 .auth__desc {
   margin-top: 10px;
   color: #9e9da8;
-  padding: 0 30px;
+  padding: 0 20px;
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 146.667%;
@@ -2974,6 +2993,12 @@ html {
   flex-direction: column;
   gap: 3rem;
 }
+@media (max-width: 767.98px) {
+  .auth__btn-group {
+    margin-top: 40px;
+    gap: 2rem;
+  }
+}
 .auth__btn {
   width: 100%;
 }
@@ -2987,6 +3012,7 @@ html {
 @media (max-width: 767.98px) {
   .auth__text {
     font-size: 1.6rem;
+    margin-top: 4rem;
   }
 }
 
