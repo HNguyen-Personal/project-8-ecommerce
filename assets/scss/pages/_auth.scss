@@ -29,7 +29,7 @@
       }
 
       &-img {
-         max-width: 100%;
+         width: min(424px, 100%);
       }
 
       &-text {
@@ -86,7 +86,8 @@
          width: min(460px, 100%);
          // background: orange;
          margin: 0 auto;
-         @include abstracts.screen(sm){
+
+         @include abstracts.screen(sm) {
             padding: 32px 0;
          }
 
@@ -100,6 +101,7 @@
       font-weight: 500;
       line-height: 146.667%;
       color: var(--auth-heading-color);
+
       @include abstracts.screen(md) {
          font-size: 2.2rem;
          margin-top: 40px;
@@ -120,12 +122,19 @@
       }
    }
 
+   &__message {
+      margin-top: 30px;
+   }
+
    &__form {
       width: 100%;
       margin-top: 30px;
 
       @include abstracts.screen(md) {
          margin-top: 0;
+      }
+      &-forgot{
+         margin-top: 10px;
       }
    }
 
@@ -154,7 +163,8 @@
       display: flex;
       flex-direction: column;
       gap: 3rem;
-      @include abstracts.screen(md){
+
+      @include abstracts.screen(md) {
          margin-top: 40px;
          gap: 2rem;
       }
