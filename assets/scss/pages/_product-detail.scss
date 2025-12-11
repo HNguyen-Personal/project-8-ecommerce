@@ -63,3 +63,40 @@
       }
    }
 }
+
+.prod-info {
+   padding: 60px;
+   background: #F6F6F6;
+
+   &__heading {
+      color: var(--prod-info-heading-color);
+      font-size: 2.6rem;
+      font-weight: 500;
+      line-height: 138.462%;
+   }
+}
+
+.prod-prop {
+   display: flex;
+   gap: 16px;
+   margin-top: 30px;
+
+   &__icon {
+      align-self: flex-start;
+   }
+
+   &__title {
+      color: var(--prod-prop-title-color);
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 144.444%;
+   }
+
+   &__desc {
+      margin-top: 4px;
+      color: var(--prod-prop-desc-color);
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 142.857%;
+   }
+}

@@ -53,7 +53,7 @@ html {
    //Filter form
    --filter-form-bg: #fff;
    --filter-form-shadow: rgba(200, 200, 200, 0.40);
-   --filter-form-tag-bg: #F8F8FB;
+   --form-tag-bg: #F8F8FB;
    //Sign Up Page
    --auth-intro-bg: #FAFAFD;
    --auth-content-bg: #fff;
@@ -67,4 +67,11 @@ html {
    //Breadcrumb
    --breadcrumb-bg-color: #F6F6F6;
    --breadcrumb-shadow: rgba(237, 237, 246, 0.20);
+
+
+   // Product info
+
+   --prod-info-heading-color: #1A162E;
+   --prod-prop-title-color: #000;
+   --prod-prop-desc-color: #1A162E;
 }
