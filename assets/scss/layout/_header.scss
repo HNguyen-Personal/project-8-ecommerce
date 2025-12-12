@@ -238,7 +238,8 @@
 
    &__btn-wrap {
       position: relative;
-      &:hover .act-dropdown{
+
+      &:hover .act-dropdown {
          display: block;
       }
    }
@@ -354,6 +355,12 @@
       // border-bottom-width: 1px;
       border-width: 1.5px 0;
       border-color: var(--act-dropdown-separator-color);
+   }
+
+   &__separate {
+      height: 1px;
+      background-color: var(--act-dropdown-separator-color);
+      margin: 2rem 0;
    }
 
    &__row {
