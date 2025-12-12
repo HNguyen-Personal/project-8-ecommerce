@@ -236,6 +236,13 @@
       padding: 13px;
    }
 
+   &__btn-wrap {
+      position: relative;
+      &:hover .act-dropdown{
+         display: block;
+      }
+   }
+
    &__btn {
       padding: 13px 20px;
       @extend %flexItemCenter;
@@ -288,5 +295,131 @@
    @include abstracts.screen(sm) {
       padding: 0 2rem;
       height: 44px;
+   }
+}
+
+.act-dropdown {
+   position: absolute;
+   top: 48px;
+   right: -62px;
+   display: none;
+   padding-top: 28px;
+
+   &__inner {
+      position: relative;
+      padding: 30px;
+      // height: 73.4rem;
+      width: min(50rem, 100vw);
+      border-radius: 2rem;
+      background: var(--act-dropdown-bg);
+      box-shadow: 0 40px 90px 20px var(--act-dropdown-shadow);
+   }
+
+   &__arrow {
+      position: absolute;
+      top: -14px;
+      right: 82px;
+      height: 20.5px;
+      filter: var(--dropdown-arrow-color);
+   }
+
+   &__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+   }
+
+   &__title {
+      color: inherit;
+      font-size: 2.2rem;
+      font-weight: 500;
+      line-height: 145.455%;
+   }
+
+   &__view-all {
+      color: var(--Blue-Blue, #0071DC);
+      font-size: 1.8rem;
+      line-height: 145.455%;
+   }
+
+   &__bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin: 2rem 0;
+      padding: 3rem 0;
+      border-style: solid;
+      // border-top-width: 1px;
+      // border-bottom-width: 1px;
+      border-width: 1.5px 0;
+      border-color: var(--act-dropdown-separator-color);
+   }
+
+   &__row {
+      display: flex;
+      justify-content: space-between;
+
+      &--bold {
+         font-weight: 500;
+      }
+   }
+
+   &__list {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 10px;
+   }
+
+   &__label,
+   &__value {
+      color: inherit;
+      font-size: 1.8rem;
+      line-height: 145.455%;
+   }
+
+   &__checkout {
+      justify-content: flex-end;
+      display: flex;
+   }
+
+   &__checkout-btn {
+      min-width: 27.8rem !important;
+   }
+}
+
+.cart-preview-item {
+   text-align: left;
+
+   &__img-wrap {
+      position: relative;
+      padding-top: 100%;
+      border: 1.5px solid var(--act-dropdown-separator-color);
+      border-radius: 10px;
+   }
+
+   &__thumb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #0000000D;
+   }
+
+   &__title {
+      margin-top: 1.4rem;
+      color: inherit;
+      font-size: 1.4rem;
+      line-height: 142.857%;
+   }
+
+   &__price {
+      margin-top: 0.6rem;
+      color: inherit;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 146.667%;
    }
 }

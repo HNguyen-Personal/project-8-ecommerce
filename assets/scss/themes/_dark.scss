@@ -30,6 +30,13 @@ html.dark {
    --menu-column-icon-color: brightness(0) saturate(100%) invert(94%) sepia(6%) saturate(409%) hue-rotate(201deg) brightness(104%) contrast(96%);
 
    /* ============================
+               3.1 Cart Drop Down Menu Content
+   ============================= */
+   --act-dropdown-bg: #3e4148;
+   --act-dropdown-shadow: rgba(23, 28, 40, 0.40);
+   --act-dropdown-separator-color: #171C28;
+
+   /* ============================
      4. Top Menu
   ============================= */
    --top-menu-border-color: #171c28;

@@ -29,6 +29,12 @@ html {
    --dropdown-arrow-color: "";
 
    /* ============================
+         3.1 Cart Drop Down Menu Content
+         ============================= */
+   --act-dropdown-bg: #fff;
+   --act-dropdown-shadow: rgba(200, 200, 200, 0.40);
+      --act-dropdown-separator-color:#D2D1D6;
+   /* ============================
      4. Top Menu
   ============================= */
    --top-menu-border-color: #d2d1d6;
@@ -134,4 +140,6 @@ html {
      ============================= */
 
    --text-content-hr-bg: #ebebeb;
+
+
 }
