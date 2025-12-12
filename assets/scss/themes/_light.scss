@@ -1,36 +1,47 @@
 @use "../abstracts";
 
 html {
-   --text-color: #1A162E;
-   // --text-color: red;
+   /* ============================
+     1. Core Colors & Typography
+  ============================= */
+   --text-color: #1a162e;
    --icon-color: brightness(0) saturate(100%) invert(10%) sepia(40%) saturate(722%) hue-rotate(210deg) brightness(95%) contrast(101%);
-   --body-bg: #F6F6F6;
-   --header-bg-color: #eee;
-   --top-act-group-bg-color: #FFF;
-   --top-act-group-shadow: rgba(237, 237, 246, 0.20);
-   --top-act-group-separate: #EDEDF6;
+   --body-bg: #f6f6f6;
 
+   /* ============================
+     2. Header
+  ============================= */
+   --header-bg-color: #eee;
+   --top-act-group-bg-color: #fff;
+   --top-act-group-shadow: rgba(237, 237, 246, 0.2);
+   --top-act-group-separate: #ededf6;
 
    @include abstracts.screen(lg) {
       --header-bg-color: #fff;
-      --header-shadow-color: rgba(237, 237, 246, 0.20);
+      --header-shadow-color: rgba(237, 237, 246, 0.2);
    }
 
-   // Dropdown Menu
+   /* ============================
+     3. Dropdown Menu
+  ============================= */
    --dropdown-bg-color: #fff;
-   --dropdown-shadow-color: rgba(200, 200, 200, 0.40);
-   --dropdown-arrow-color:"";
+   --dropdown-shadow-color: rgba(200, 200, 200, 0.4);
+   --dropdown-arrow-color: "";
 
+   /* ============================
+     4. Top Menu
+  ============================= */
+   --top-menu-border-color: #d2d1d6;
 
-
-   // top menu
-   --top-menu-border-color: #D2D1D6;
-
-   //Sidebar
+   /* ============================
+     5. Sidebar
+  ============================= */
    --sidebar-bg: #fff;
-   --sidebar-shadow: rgba(200, 200, 200, 0.40);
+   --sidebar-shadow: rgba(200, 200, 200, 0.4);
 
-   // Categories Item
+   /* ============================
+     6. Category Items
+  ============================= */
    --cate-item-bg: #eee;
    --cate-item-thumb-bg: #fff;
    --cate-item-title-color: #000;
@@ -39,39 +50,88 @@ html {
       --cate-item-bg: #fff;
    }
 
-   // Filter Btn
+   /* ============================
+     7. Filter Buttons / Filter Form
+  ============================= */
    --filter-btn-bg-color: #fff;
-   --filter-btn-color: #6C6C72;
+   --filter-btn-color: #6c6c72;
 
-   //Product Cart
-   --product-cart-bg: #fff;
-   --product-cart-shadow: rgba(237, 237, 246, 0.20);
-
-   //Like btn
-   --like-btn-shadow: rgba(124, 124, 124, 0.20);
-
-   //Filter form
    --filter-form-bg: #fff;
-   --filter-form-shadow: rgba(200, 200, 200, 0.40);
-   --form-tag-bg: #F8F8FB;
-   //Sign Up Page
-   --auth-intro-bg: #FAFAFD;
+   --filter-form-shadow: rgba(200, 200, 200, 0.4);
+   --form-tag-bg: #f8f8fb;
+   --form-placeholder-color: #d2d1d6;
+
+   /* ============================
+     8. Product Card
+  ============================= */
+   --product-cart-bg: #fff;
+   --product-cart-shadow: rgba(237, 237, 246, 0.2);
+
+   /* ============================
+     9. Like Button
+  ============================= */
+   --like-btn-shadow: rgba(124, 124, 124, 0.2);
+
+   /* ============================
+     10. Auth Pages (Signup/Login)
+  ============================= */
+   --auth-intro-bg: #fafafd;
    --auth-content-bg: #fff;
 
-   --form-placeholder-color:#D2D1D6;
-
-
-   // Product detail
+   /* ============================
+     11. Product Detail Page
+  ============================= */
    --product-detail-bg: #fff;
 
-   //Breadcrumb
-   --breadcrumb-bg-color: #F6F6F6;
-   --breadcrumb-shadow: rgba(237, 237, 246, 0.20);
+   @include abstracts.screen(md) {
+      --product-detail-bg: #fafafd;
+   }
 
+   --product-info-bg-color: #f6f6f6;
 
-   // Product info
+   @include abstracts.screen(md) {
+      --product-info-bg-color: #fff;
+   }
 
-   --prod-info-heading-color: #1A162E;
+   --prod-tag-bg-color: #ededf6;
+   --prod-info-price-color: #000;
+   --prod-info-heading-color: #1a162e;
    --prod-prop-title-color: #000;
-   --prod-prop-desc-color: #1A162E;
+   --prod-prop-desc-color: #1a162e;
+   --prod-info-container-bg-color: #fff;
+   --prod-info-container-shadow: rgba(237, 237, 246, 0.2);
+   --prod-tab-item-color: #9e9da8;
+   --prod-tab-current-item-color: #1A162E;
+
+   /* ============================
+     12. Breadcrumb
+  ============================= */
+   --breadcrumb-bg-color: #f6f6f6;
+   --breadcrumb-shadow: rgba(237, 237, 246, 0.2);
+
+   @include abstracts.screen(md) {
+      --breadcrumb-bg-color: #fff;
+      border-radius: 20px;
+   }
+
+   /* ============================
+     13. Search Bar
+  ============================= */
+   --search-bar-bg-color: #fff;
+
+
+   /* ============================
+     14. Review Card
+  ============================= */
+   --review-card-bg-color:#FAFAFD;
+
+   @include abstracts.screen(md) {
+      --review-card-bg-color: #fff;
+   }
+
+   /* ============================
+        15. Text Content
+     ============================= */
+
+   --text-content-hr-bg: #ebebeb;
 }

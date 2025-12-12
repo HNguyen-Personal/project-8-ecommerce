@@ -8,19 +8,19 @@
 
 .footer {
   /* ===== Layout & background ===== */
-  margin-top: 4rem;
+//   margin-top: 4rem;
   padding: 2.4rem 0;
   background: var(--header-bg-color);
   color: var(--text-color);
   border-top: 1px solid var(--top-menu-border-color);
 
   @include abstracts.screen(md) {
-    margin-top: 3.2rem;
+   //  margin-top: 3.2rem;
     padding: 2.4rem 0 2rem;
   }
 
   @include abstracts.screen(sm) {
-    margin-top: 2.4rem;
+   //  margin-top: 2.4rem;
     padding: 2rem 0 1.6rem;
   }
 

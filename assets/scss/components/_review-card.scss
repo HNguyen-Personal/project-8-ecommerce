@@ -1,0 +1,78 @@
+@use "../abstracts";
+
+.review-card {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   padding: 3rem;
+   border-radius: 1.6rem;
+   background: var(--review-card-bg-color);
+
+   &__content {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 20px;
+
+      @include abstracts.screen(xl) {
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+      }
+
+      @include abstracts.screen(md) {
+         flex-direction: row;
+         align-items: initial;
+         text-align: initial;
+      }
+   }
+
+   &__avatar {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+      object-fit: cover;
+   }
+
+   &__title {
+      color: inherit;
+      font-size: 2.2rem;
+      font-weight: 500;
+      line-height: 145.455%;
+   }
+
+   &__desc {
+      margin-top: 1rem;
+      color: inherit;
+      font-weight: 400;
+      line-height: 150%;
+      // width: min(26.7rem, 100%);
+   }
+
+   &__rating {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      @include abstracts.screen(xl) {
+         flex-direction: column;
+      }
+
+      @include abstracts.screen(md) {
+         flex-direction: row;
+      }
+
+      &-title {
+         color: inherit;
+         font-size: 1.8rem;
+         font-weight: 500;
+         line-height: 144.444%;
+      }
+   }
+
+   &__star-list {
+      display: flex;
+      gap: 8px;
+   }
+
+}
