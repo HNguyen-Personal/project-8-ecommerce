@@ -1480,6 +1480,11 @@ html.dark {
   --checkout-cart-info-shadow: rgba(23, 28, 40, 0.20);
   --checkout-border-color: #292E39;
   --checkout-gift-shadow: rgba(23, 28, 40, 0.20);
+  /* ============================
+                      17. Dialog Page
+         ============================= */
+  --dialog-content-bg: #3e4148;
+  --dialog-content-shadow: rgba(23, 28, 40, 0.4);
 }
 
 html {
@@ -1629,6 +1634,11 @@ html {
   --checkout-cart-info-shadow: rgba(237, 237, 246, 0.2);
   --checkout-border-color: #d2d1d6;
   --checkout-gift-shadow: rgba(237, 237, 246, 0.2);
+  /* ============================
+                17. Dialog Page
+   ============================= */
+  --dialog-content-bg: #fff;
+  --dialog-content-shadow: rgba(237, 237, 246, 0.20);
 }
 
 .top-act__btn, .top-act__group, .top-act, .navbar__link, .navbar__list, .top-bar {
@@ -2611,6 +2621,7 @@ html {
   height: 5rem;
   border-radius: 50%;
   box-shadow: 0 20px 60px var(--like-btn-shadow);
+  white-space: nowrap;
 }
 .like-btn:not(.like-btn--liked) .like-btn__icon--liked {
   display: none;
@@ -2636,12 +2647,15 @@ html {
   padding: 0 20px;
   user-select: none;
 }
+.btn--small {
+  height: 40px;
+  padding: 0 16px;
+}
 .btn + .btn:not(.btn-no-margin) {
   margin-left: 20px;
 }
 .btn--text {
   background: transparent;
-  color: #9E9DA8;
   font-weight: 400;
 }
 .btn--primary {
@@ -3345,6 +3359,61 @@ html {
 .review-card__star-list {
   display: flex;
   gap: 8px;
+}
+
+.dialog__overlay, .dialog {
+  position: fixed;
+  inset: 0;
+}
+
+.dialog {
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+}
+.dialog.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity, visibility;
+  transition-duration: 0.2s;
+}
+.dialog__overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+.dialog__content {
+  position: relative;
+  background-color: var(--dialog-content-bg);
+  border-radius: 2rem;
+  box-shadow: 0 20px 60px 10px var(--dialog-content-shadow);
+  z-index: 1;
+  max-width: min(450px, 100% - 40px);
+  padding: 30px;
+}
+.dialog__text {
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+.dialog__bottom {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+@media (max-width: 767.98px) {
+  .dialog {
+    padding: 20px;
+  }
+  .dialog__bottom {
+    gap: 20px;
+  }
+  .dialog__btn {
+    flex: 1;
+  }
 }
 
 .home {

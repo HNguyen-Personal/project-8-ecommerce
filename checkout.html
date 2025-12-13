@@ -93,7 +93,7 @@
                             <img src="./assets/icons/heart-grey.svg" alt="" />
                             Save
                           </button>
-                          <button class="cart-item__ctrl-btn">
+                          <button class="cart-item__ctrl-btn js-toggle" toggle-target="#delete-confirm">
                             <img src="./assets/icons/trash.svg" alt="" />
                             Delete
                           </button>
@@ -135,7 +135,7 @@
                             <img src="./assets/icons/heart-grey.svg" alt="" />
                             Save
                           </button>
-                          <button class="cart-item__ctrl-btn">
+                          <button class="cart-item__ctrl-btn js-toggle" toggle-target="#delete-confirm">
                             <img src="./assets/icons/trash.svg" alt="" />
                             Delete
                           </button>
@@ -177,7 +177,7 @@
                             <img src="./assets/icons/heart-grey.svg" alt="" />
                             Save
                           </button>
-                          <button class="cart-item__ctrl-btn">
+                          <button class="cart-item__ctrl-btn js-toggle" toggle-target="#delete-confirm">
                             <img src="./assets/icons/trash.svg" alt="" />
                             Delete
                           </button>
@@ -191,7 +191,12 @@
                     <div class="col-8 col-xxl-7">
                       <div class="cart-info__continue">
                         <a href="./" class="cart-info__continue-link">
-                          <img class="cart-info__continue-link-icon icon" class="icon" src="./assets/icons/arrow-down24x24.svg" alt="" />
+                          <img
+                            class="cart-info__continue-link-icon icon"
+                            class="icon"
+                            src="./assets/icons/arrow-down24x24.svg"
+                            alt=""
+                          />
                           Continue Shopping
                         </a>
                       </div>
@@ -259,5 +264,22 @@
     <script>
       load("#footer", "./templates/footer.html");
     </script>
+
+    <!-- Dialog / Modal -->
+    <div class="dialog hide" id="delete-confirm">
+      <div class="dialog__content">
+        <div class="dialog__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, fuga!</div>
+        <div class="dialog__bottom">
+          <button class="btn btn--small btn--text dialog__btn js-toggle" toggle-target="#delete-confirm">Cancel</button>
+          <button
+            class="btn btn--small dialog__btn btn--primary btn-no-margin js-toggle"
+            toggle-target="#delete-confirm"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+      <div class="dialog__overlay js-toggle" toggle-target="#delete-confirm"></div>
+    </div>
   </body>
 </html>

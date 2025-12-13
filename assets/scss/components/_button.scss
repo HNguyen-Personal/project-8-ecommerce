@@ -24,6 +24,7 @@
    height: 5rem;
    border-radius: 50%;
    box-shadow: 0 20px 60px var(--like-btn-shadow);
+   white-space: nowrap;
 
    &:not(&--liked) &__icon--liked {
       display: none;
@@ -55,6 +56,11 @@
    padding: 0 20px;
    user-select: none;
 
+   &--small {
+      height: 40px;
+      padding: 0 16px;
+   }
+
    +.btn {
       &:not(.btn-no-margin) {
          margin-left: 20px;
@@ -63,7 +69,7 @@
 
    &--text {
       background: transparent;
-      color: #9E9DA8;
+      // color: #9E9DA8;
       font-weight: 400;
    }
 
