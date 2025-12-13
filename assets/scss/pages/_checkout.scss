@@ -7,7 +7,7 @@
    padding-bottom: 50px;
 
    &__breadcrumbs {
-      background-color: #fff;
+      background-color: var(--checkout-breadcrumb-bg);
    }
 }
 
@@ -19,15 +19,132 @@
    }
 }
 
-.cart-info {
+.cart-info+.cart-info {
+   margin-top: 30px;
+}
 
+.cart-info {
    padding: 30px;
    border-radius: 2rem;
-   background-color: #fff;
-   box-shadow: 0 20px 60px 10px rgba(237, 237, 246, 0.20);
+   background-color: var(--checkout-cart-info-bg);
+   box-shadow: 0 20px 60px 10px var(--checkout-cart-info-shadow);
+
+   @include abstracts.screen(md) {
+      padding: 16px;
+   }
 
    &__list {
       margin-top: -30px;
+
+      @include abstracts.screen(md) {
+         margin-top: -16px;
+      }
+   }
+
+   &__bottom {
+      margin-top: 30px;
+   }
+
+   &__continue {
+      display: flex;
+      height: 100%;
+      align-items: flex-end;
+   }
+
+   &__row,
+   &__continue-link {
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 144.444%;
+      color: inherit;
+   }
+
+   &__continue-link {
+      //  margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      &-icon {
+         rotate: 90deg;
+         transition: translate 0.3s;
+      }
+
+      &:hover &-icon {
+         translate: -5px;
+      }
+   }
+
+   &__row+&__row {
+      margin-top: 1rem;
+   }
+
+   &__row {
+      display: flex;
+      justify-content: space-between;
+
+      &--sub {
+         font-weight: 400;
+      }
+
+      &--total {
+         font-size: 2.2rem;
+         font-weight: 700;
+      }
+
+      &-gift {
+         gap: 2rem;
+      }
+   }
+
+   &__separator {
+      height: 0.1rem;
+      background: var(--checkout-border-color);
+      margin: 30px 0;
+
+      &--small {
+         margin: 14px 0;
+      }
+   }
+
+   &__checkout-btn {
+      margin-top: 30px;
+      padding: 1.8rem 2rem;
+      color: inherit;
+      font-size: 2.2rem;
+      line-height: 145.455%;
+   }
+}
+
+.gift-item {
+   display: flex;
+   align-items: center;
+   gap: 2rem;
+
+   &__icon-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 1.4rem;
+      background: rgb(118, 68, 225, 0.1);
+      box-shadow: 0 20px 60px 10px var(--checkout-gift-shadow);
+      padding: 1rem;
+   }
+
+   &__title {
+      color: inherit;
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 144.444%;
+   }
+
+   &__desc {
+      color: inherit;
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      line-height: 142.857%;
    }
 }
 
@@ -35,12 +152,25 @@
    display: flex;
    gap: 30px;
    padding: 30px 0;
-   border-bottom: 1px solid #d2d1d6;
+   border-bottom: 1px solid var(--checkout-border-color);
+
+   @include abstracts.screen(md) {
+      padding: 16px 0;
+      gap: 16px;
+
+      &:last-child {
+         border: none;
+      }
+   }
 
    &__content {
       flex: 1;
       display: flex;
       align-self: flex-start;
+
+      @include abstracts.screen(md) {
+         flex-direction: column;
+      }
 
       &-left {
          flex: 1;
@@ -49,6 +179,10 @@
       &-right {
          display: flex;
          flex-direction: column;
+
+         @include abstracts.screen(md) {
+            margin-top: 1.6rem;
+         }
       }
    }
 
@@ -63,6 +197,21 @@
       width: 175px;
       height: 175px;
       object-fit: contain;
+
+      @include abstracts.screen(xxl) {
+         width: 150px;
+         height: 150px;
+      }
+
+      @include abstracts.screen(lg) {
+         width: 100px;
+         height: 100px;
+      }
+
+      @include abstracts.screen(md) {
+         width: 60px;
+         height: 60px;
+      }
    }
 
    &__title {
@@ -75,14 +224,14 @@
 
    &__price-wrap {
       margin: 1.6rem 0;
-      color: #9E9DA8;
+      color: #9e9da8;
       font-size: 1.8rem;
       font-weight: 500;
       line-height: 144.444%;
    }
 
    &__status {
-      color: #67B044;
+      color: #67b044;
    }
 
    &__ctrl {
@@ -91,6 +240,14 @@
       gap: 2rem;
       margin-top: auto;
       min-height: 44px;
+
+      &--md-block {
+         @include abstracts.screen(md) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+         }
+      }
    }
 
    &__input {
@@ -113,16 +270,22 @@
       font-size: 2.2rem;
       font-weight: 700;
       line-height: 145.455%;
+
+      @include abstracts.screen(md) {
+         text-align: left;
+         margin-bottom: 16px;
+      }
    }
 
    &__ctrl-btn {
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #9E9DA8;
+      color: #9e9da8;
       font-weight: 500;
       line-height: 150%;
-      &:last-child{
+
+      &:last-child {
          margin-left: 10px;
       }
    }

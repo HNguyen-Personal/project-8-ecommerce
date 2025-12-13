@@ -33,7 +33,7 @@ html {
          ============================= */
    --act-dropdown-bg: #fff;
    --act-dropdown-shadow: rgba(200, 200, 200, 0.40);
-      --act-dropdown-separator-color:#D2D1D6;
+   --act-dropdown-separator-color:#D2D1D6;
    /* ============================
      4. Top Menu
   ============================= */
@@ -140,6 +140,12 @@ html {
      ============================= */
 
    --text-content-hr-bg: #ebebeb;
-
-
+   /* ============================
+           16. Checkout Page
+        ============================= */
+   --checkout-breadcrumb-bg: #FFF;
+   --checkout-cart-info-bg: #Fff;
+   --checkout-cart-info-shadow: rgba(237, 237, 246, 0.2);
+   --checkout-border-color: #d2d1d6;
+   --checkout-gift-shadow: rgba(237, 237, 246, 0.2);
 }
