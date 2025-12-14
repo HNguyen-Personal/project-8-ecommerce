@@ -66,6 +66,9 @@ html.dark {
    --filter-form-arrow: var(--dropdown-arrow-color);
 
    --form-placeholder-color: #b9babe;
+   --form-select-dialog-shadow: rgba(#fff, 0.2);
+   --form-select-dialog-bg: #3e4148;
+   --option-hover-bg: #292e39;
 
    /* ============================
      8. Product Card
@@ -132,8 +135,8 @@ html.dark {
 
 
    /* ============================
-                       17. Dialog Page
+                       17. modal Page
           ============================= */
-   --dialog-content-bg: #3e4148;
-   --dialog-content-shadow: rgba(23, 28, 40, 0.4);
+   --modal-content-bg: #3e4148;
+   --modal-content-shadow: rgba(23, 28, 40, 0.4);
 }

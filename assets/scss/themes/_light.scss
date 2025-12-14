@@ -67,6 +67,10 @@ html {
    --form-tag-bg: #f8f8fb;
    --form-placeholder-color: #d2d1d6;
 
+   --form-select-dialog-shadow: rgba(#000000, 0.2);
+   --form-select-dialog-bg: #fff;
+   --option-hover-bg: #ebebeb;
+
    /* ============================
      8. Product Card
   ============================= */
@@ -150,8 +154,8 @@ html {
    --checkout-gift-shadow: rgba(237, 237, 246, 0.2);
 
    /* ============================
-                 17. Dialog Page
+                 17. modal Page
     ============================= */
-   --dialog-content-bg: #fff;
-   --dialog-content-shadow: rgba(237, 237, 246, 0.20);
+   --modal-content-bg: #fff;
+   --modal-content-shadow: rgba(237, 237, 246, 0.20);
 }

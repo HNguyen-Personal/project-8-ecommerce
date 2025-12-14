@@ -35,7 +35,7 @@
           <div class="search-bar d-none d-md-flex">
             <input type="text" name="" id="" placeholder="Search for item" class="search-bar__input" />
             <button class="search-bar__submit">
-              <img src="./assets/icons/search.svg" alt="" class="search-bar__icon" />
+              <img src="./assets/icons/search.svg" alt="" class="search-bar__icon icon" />
             </button>
           </div>
         </div>
@@ -239,7 +239,9 @@
                   <span>Total:</span>
                   <span>$201.65</span>
                 </div>
-                <a href="./shipping.html" class="cart-info__checkout-btn btn btn--primary btn--round">Continue to checkout</a>
+                <a href="./shipping.html" class="cart-info__checkout-btn btn btn--primary btn--round"
+                  >Continue to checkout</a
+                >
               </div>
               <div class="cart-info">
                 <a href="#!">
@@ -265,21 +267,21 @@
       load("#footer", "./templates/footer.html");
     </script>
 
-    <!-- Dialog / Modal -->
-    <div class="dialog hide" id="delete-confirm">
-      <div class="dialog__content">
-        <div class="dialog__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, fuga!</div>
-        <div class="dialog__bottom">
-          <button class="btn btn--small btn--text dialog__btn js-toggle" toggle-target="#delete-confirm">Cancel</button>
+    <!-- modal / Modal -->
+    <div class="modal modal--small hide" id="delete-confirm">
+      <div class="modal__content">
+        <div class="modal__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, fuga!</div>
+        <div class="modal__bottom">
+          <button class="btn btn--small btn--text modal__btn js-toggle" toggle-target="#delete-confirm">Cancel</button>
           <button
-            class="btn btn--small dialog__btn btn--primary btn-no-margin js-toggle"
+            class="btn btn--small modal__btn btn--primary btn-no-margin js-toggle"
             toggle-target="#delete-confirm"
           >
             Confirm
           </button>
         </div>
       </div>
-      <div class="dialog__overlay js-toggle" toggle-target="#delete-confirm"></div>
+      <div class="modal__overlay js-toggle" toggle-target="#delete-confirm"></div>
     </div>
   </body>
 </html>
